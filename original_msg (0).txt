@@ -1,0 +1,201 @@
+Delivered-To: @
+Received: by 2002:ab0:4c5:0:0:0:0:0 with SMTP id 63csp2539206uaw;
+        Mon, 19 Nov 2018 03:00:42 -0800 (PST)
+X-Google-Smtp-Source: AJdET5f8AuWLkBrLJyARHS1hopkbD/xZK2PwF4l3dLsBGQlKxr4vHv3EF9DdPfSnFv4w80HVDXFC
+X-Received: by 2002:a17:902:7c82:: with SMTP id y2mr14257990pll.33.1542625242882;
+        Mon, 19 Nov 2018 03:00:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1542625242; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Ksae6ICQMLUtTatSjNGIt+uUubrG19Z4WsDkashL/FCSQhW9GmUKZxMdqhnUVOibPl
+         9Hi3Th/qHddUeHq0YLjxm5twFWydi8xNWi2Qt+1c5GlAN8lB3MTx+/oZ2BQd1+Cvu3e4
+         Xgw7kefPOhr1g81HeaBCm1IxZnxpiKnv6W47ctdHitvhJSFwYPfaAj1nKm+TRG3S7mGQ
+         sWk96JwL39CXSM0w5XyQFa933fFun9k+dCRakf3QSh3CnjgADeEgu/pomu1qxi1yQXtl
+         F+Sd9qvE1YpiVlVnQG6/lVyU60xA9LvUjT9MtB2T5KYolxwBkS2T9fcqKjzpEvm6MIZK
+         WGQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:bounces-to:mime-version:subject:message-id:to:from
+         :dkim-signature:dkim-signature;
+        bh=7B5G3nDlLLYDeU5UWjdEF/RZX3yOuDZ3ozOIVUYoa2g=;
+        b=rMaNoHCDB7PL3VTWh3FlKyEbV2RuT3Lnx+x9jLpPtgpld4edp9wUBds/SlGSLKioAy
+         uj9hqzYo8Pt9PufL5rnAZykLBAG1p//F+Z+XmwoKY7KeUPon7DAd7gg9C2YfP4ZAaXQg
+         YREjnGDhp4G1gqkH37+xQsD8e+HpIcj2cXaKF73eItOxmL6a/LYrv8y2Y0X1syaIeqn7
+         UMPXdIqcpE4kQpWMtqCkgew5zj5FBtif1E7Yz2b+/g8xAw2OKO8yPQxHyeFu41n3Bdmt
+         jU6s+nrsr9IFP9p0uvxgGyEh90oSriG7ws90Uq0gaCZ9qT5xBXugQZtiOljlm09MizoG
+         2p/A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@amazon.com.sg header.s=nswvcovbcsespzn6z6dnzr7wtptvvfvo header.b=RnQhe3WY;
+       dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=JSpWtYhJ;
+       spf=pass (google.com: domain of 201811191100384232195542e743c5afa5605389c0p0fe@bounces.amazon.com designates 54.240.25.2 as permitted sender) smtp.mailfrom=201811191100384232195542e743c5afa5605389c0p0fe@bounces.amazon.com
+Return-Path: <201811191100384232195542e743c5afa5605389c0p0fe@bounces.amazon.com>
+Received: from a25-2.smtp-out.us-west-2.amazonses.com (a25-2.smtp-out.us-west-2.amazonses.com. [54.240.25.2])
+        by mx.google.com with ESMTPS id b8-v6si21502012plx.76.2018.11.19.03.00.42
+        for <@>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 19 Nov 2018 03:00:42 -0800 (PST)
+Received-SPF: pass (google.com: domain of 201811191100384232195542e743c5afa5605389c0p0fe@bounces.amazon.com designates 54.240.25.2 as permitted sender) client-ip=54.240.25.2;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@amazon.com.sg header.s=nswvcovbcsespzn6z6dnzr7wtptvvfvo header.b=RnQhe3WY;
+       dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=JSpWtYhJ;
+       spf=pass (google.com: domain of 201811191100384232195542e743c5afa5605389c0p0fe@bounces.amazon.com designates 54.240.25.2 as permitted sender) smtp.mailfrom=201811191100384232195542e743c5afa5605389c0p0fe@bounces.amazon.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=nswvcovbcsespzn6z6dnzr7wtptvvfvo; d=amazon.com.sg; t=1542625242;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=XJJsBKDmgGcBT9hEZcR9FVEjH14Sp41H5O6Ev+PYMB8=;
+	b=RnQhe3WYndRJG1+jrM1kDJ82kK+tpw1qe1W4KCeJP6Nm4bq1iFHZwR6rrPn8ujhZ
+	9mxrCpiVONErVW+kf6uwQDgvsggTG9Gs1muv3l4D5nnA6rmkezShK79HzbTdHSddghG
+	dgAcV3cot1vOeTWpRuVA7YxfoRnROdjJIPpxg78Q=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1542625242;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=XJJsBKDmgGcBT9hEZcR9FVEjH14Sp41H5O6Ev+PYMB8=;
+	b=JSpWtYhJPGgUCcdwH/iwUqy4JDxqO1QCpLe8rcaTASEqqmmuuWU9/LunyQxRGckO
+	GJck6Xz7Y9vrrzE3LhIZQuyJ1/7AUgDqkY6RDGY77P85O9nJlAcyPhtyno/kk2GVhrt
+	+AoXrTkqym0ijyEqQwPAq912gcdt8NL4tnVy9GbI=
+From: Amazon Prime Now <primenow-reply@amazon.com.sg>
+To: @
+Message-ID: <010101672ba12bce-de4cfdd2-be30-4935-8c65-2efa8061ea34-000000@us-west-2.amazonses.com>
+Subject: Your Amazon Prime Now order of "Bertolli, Olive Oil, Extra..." and
+ 16 more item(s) has been delivered.
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2030907_493384481.1542625242048"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 201811191100384232195542e743c5afa5605389c0p0fe@bounces.amazon.com
+X-AMAZON-METADATA: CA=C3SCOG3EADVKTV-CU=A2CTYSYYKJUR98
+X-Original-MessageID: <urn.rtn.msg.201811191100384232195542e743c5afa5605389c0p0fe@1542625242050.rtn-svc-fe-back-m4l2b-879bebc1.us-west-2.amazon.com>
+Date: Mon, 19 Nov 2018 11:00:42 +0000
+X-SES-Outgoing: 2018.11.19-54.240.25.2
+Feedback-ID: 1.us-west-2.rdzROVNU4Ie6UEvJOunP6JDKqJ3if06FJy9qthmk+BU=:AmazonSES
+
+------=_Part_2030907_493384481.1542625242048
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Amazon Prime Now
+Order Dispatched and Delivered 
+Order #ORDER_7423
+_______________________________________________________________________________________
+Hello Irina,
+Your order has been dispatched and delivered. The details are below.
+=======================================================================================
+Delivered	
+	Nov 19, 2018 07:00 PM
+Delivery Address
+	Na_ me_
+	X  #XX-XX
+	CONDO_NAME
+	Singapore,
+	POSTAL_CODE
+
+Delivered to
+    Household Member
+=======================================================================================	
+Order Details
+    Order #ORDER_7423
+    Placed on  November 19, 2018
+    Cabbage Long, Wombok, 1.5kg
+    S$6.95
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Red Cabbage, 1kg
+    S$2.80
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    123 ORGANIC Sweet Corn, 2 Count
+    S$4.99
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Marigold 0% Fat Yoghurt Drink, Fruits and Vegetables with Wheatgrass, 700g - Chilled
+    S$2.80
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Cowhead Organic Rolled Oats Baby, 500g
+    S$2.75
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Arugula Wild Rocket, 100g
+    S$3.95
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Chew's Organic Selenium Fresh Brown Eggs, 550g
+    S$3.95
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Green Apple, 4 Count
+    S$2.65
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Large Green Grape, Seedless, 500g
+    S$6.07
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Gala Apple, 4 Count
+    S$2.60
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Pampers Premium Care Pants (Packaging may vary), Large, 34 ct,Suitable for 9-14 kg
+    S$17.90
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Bertolli, Olive Oil, Extra Virgin, 1L
+    S$18.70
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Kee Song Chicken Fillet, 300g (Halal) - Chilled
+    S$3.75
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Vesta Rubber Gloves 30 Cm (Large)
+    S$2.90
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Harpic Active Cleaning Gel Value Pack, Lavender, 500 ml (Pack of 3)
+    S$6.63
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Greenfields Fresh Full Cream Milk, 1L - Chilled
+    S$2.95
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Global Seasons Forelle Pears, 800g
+    S$5.90
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+_______________________________________________________________________________________
+    Subtotal: S$98.24
+    Postage & Packing: Free
+    Order Total: S$98.24
+=======================================================================================
+
+By placing your order, you agree to Amazon.com.sg's Privacy Notice and Conditions of Use.Learn more at: https://www.amazon.com.sg/help/legalPolicies.  This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message. Amazon Asia-Pacific Holdings Private Limited (Co. Reg. No. 201411358G).
+------=_Part_2030907_493384481.1542625242048
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns=3D"https://www.w3.org/1999/xhtml">
+ <head>=20
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" =
+/>=20
+  <style type=3D"text/css">
+body {
+=09margin:0;
+=09font:12px/16px Arial, sans-serif;=09
+}
+
+a {
+=09text-decoration:none;
+=09color:#006699;
+=09font:12px/16px Arial, sans-serif;=09
+}
+
+a img {
+=09border:0;
+}
+
+h2 {
+=09font-size:20px;
+=09line-height:24px;
+=09margin:0;
+=09padding:0;
+=09font-weight:normal;=09
+=09color:#000 !important;
+}
+
+h3 {
+=09font-size: 18px;
+=09color:#cc6600;
+=09margin:15px 0 0 0;
+=09font-weight: normal
+}
+
+h4 {
+=09font-size:14px;=09
+=09margin:0;
+=09font-weight:normal;
+}
+...
+..
+.

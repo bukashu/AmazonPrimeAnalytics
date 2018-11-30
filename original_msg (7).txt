@@ -1,0 +1,203 @@
+Delivered-To: @
+Received: by 2002:ab0:5782:0:0:0:0:0 with SMTP id x2csp1437881uaa;
+        Sun, 4 Nov 2018 03:36:17 -0800 (PST)
+X-Google-Smtp-Source: AJdET5elOJp9HGpxU5b8atAPaCBGqcgigNNVv7VgmC61wAXncoVv58RNp0n7cmLUC68xzar9i9Y6
+X-Received: by 2002:a17:902:a418:: with SMTP id p24-v6mr17621607plq.29.1541331377761;
+        Sun, 04 Nov 2018 03:36:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1541331377; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Z0U49+2LhLJL9rDyKntbJW0mFGzwVlJEerU9SyCEOuBFSaV/cVALZZuO1yRUJnIk3x
+         j4hhg5YFVdHXt8GhYXqZoh7SUKnxU5u0EjXKLKe6GG7NRMKD08GcTjLQxKKCB4uVIveu
+         nk09OIKGWmXR5ZWXEnWY4RzKUVRkSaqjX0nZ/xxL5OUUPDOC15kJM0Ie6dTdt1K7GTHD
+         F/zySmrzBKiXKPXQVhkuzFoAaFGltU7UdZpBytv5HD9hofBAiO9YbPBGlhDVeyfKljCP
+         2m6RjHkTGXJygzNWgxiAMblj9TY0NVO1DSbL9jJOjFDftqtJEMg2qwXdmRl5x+CZaAGk
+         5/eA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:bounces-to:mime-version:subject:message-id:to:from
+         :dkim-signature:dkim-signature;
+        bh=intfTlj1SrXCnw6YBjercecv3982yIfJbANyPQFW1Lw=;
+        b=hxcWfm+namfnmvGsCN79iuMgSvTjF07EPFrfFLy9KxGjM6gdQ8Ilohi97IJLQsqQim
+         MHHG0M4FNbQ2FBgGVkyl62FavyiM8F3c18UcDNIFFw6fzWLB8Qg1G99a8iia0iGHrcZy
+         a7esQJCwACJJ8+iN7DTOd68pmnoydGay6bqss81cJt6/k2BWZH+kGfLqwz+idbpoY8KI
+         Z9kV6leAgS6JRP/RRXUUaapTFbHhC/PL2owbc2BQVzxnaCuNTnK94eKLlE94a4juXqIo
+         9nllNLbnX5g50LuxvZ+enMvldPIY7SIw1fFa3jwPvWrkk2IuWcyj66FOQEP5+VESDd4w
+         SkVQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@amazon.com.sg header.s=nswvcovbcsespzn6z6dnzr7wtptvvfvo header.b=VVoPIRWE;
+       dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=ezhdi9gD;
+       spf=pass (google.com: domain of 20181104113613f9c55be7aacb4c4ab1cbfdd51110p0fe@bounces.amazon.com designates 54.240.25.10 as permitted sender) smtp.mailfrom=20181104113613f9c55be7aacb4c4ab1cbfdd51110p0fe@bounces.amazon.com
+Return-Path: <20181104113613f9c55be7aacb4c4ab1cbfdd51110p0fe@bounces.amazon.com>
+Received: from a25-10.smtp-out.us-west-2.amazonses.com (a25-10.smtp-out.us-west-2.amazonses.com. [54.240.25.10])
+        by mx.google.com with ESMTPS id s64-v6si41280232pfi.134.2018.11.04.03.36.17
+        for <@>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sun, 04 Nov 2018 03:36:17 -0800 (PST)
+Received-SPF: pass (google.com: domain of 20181104113613f9c55be7aacb4c4ab1cbfdd51110p0fe@bounces.amazon.com designates 54.240.25.10 as permitted sender) client-ip=54.240.25.10;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@amazon.com.sg header.s=nswvcovbcsespzn6z6dnzr7wtptvvfvo header.b=VVoPIRWE;
+       dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=ezhdi9gD;
+       spf=pass (google.com: domain of 20181104113613f9c55be7aacb4c4ab1cbfdd51110p0fe@bounces.amazon.com designates 54.240.25.10 as permitted sender) smtp.mailfrom=20181104113613f9c55be7aacb4c4ab1cbfdd51110p0fe@bounces.amazon.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=nswvcovbcsespzn6z6dnzr7wtptvvfvo; d=amazon.com.sg; t=1541331377;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=PgaXwlXlIud8+sE5VVblRSVyWT2+c1q+FbTag22qUMY=;
+	b=VVoPIRWEQkyruHfGwpORDQcfqX3NPr8DIQ2+FV/+rMtbPYiNuiXmqxfZQjkEh62Q
+	zDrKn12khrRqf4G2w1piuk9zY+nqM2hFv+tSXpMOrOkzYE9ZswynWoMCqwvjHdO3l01
+	I3GWiJV42g++DXwAMBiPkR6equQB+phAKgc+K/fU=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1541331377;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=PgaXwlXlIud8+sE5VVblRSVyWT2+c1q+FbTag22qUMY=;
+	b=ezhdi9gDLWzNYNVl4KCH/eMXX+NEhqhKGFk8kna2G0z1AuDUgp0HZGCJxi2Q0IJC
+	8ruxq+I1M1SHYtxapJeg68Thn51gxKg1KvunJmQBsaBWrV7dG5FdLRCzEoqKaBT4E8P
+	6QhHLtSXEw1iNjn2UnZS5cCiFIB/FShPI6ctuKOs=
+From: Amazon Prime Now <primenow-reply@amazon.com.sg>
+To: @
+Message-ID: <01010166de825b84-a829f735-2695-49c5-8539-b79585b9e55c-000000@us-west-2.amazonses.com>
+Subject: Your Amazon Prime Now order has been delivered.
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_19608041_1932147576.1541331377014"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 20181104113613f9c55be7aacb4c4ab1cbfdd51110p0fe@bounces.amazon.com
+X-AMAZON-METADATA: CA=C3SCOG3EADVKTV-CU=A2CTYSYYKJUR98
+X-Original-MessageID: <urn.rtn.msg.20181104113613f9c55be7aacb4c4ab1cbfdd51110p0fe@1541331377016.rtn-svc-fe-back-m4l2c-4dd1a74a.us-west-2.amazon.com>
+Date: Sun, 4 Nov 2018 11:36:17 +0000
+X-SES-Outgoing: 2018.11.04-54.240.25.10
+Feedback-ID: 1.us-west-2.rdzROVNU4Ie6UEvJOunP6JDKqJ3if06FJy9qthmk+BU=:AmazonSES
+
+------=_Part_19608041_1932147576.1541331377014
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Amazon Prime Now
+Order Dispatched and Delivered 
+Order #ORDER_6207
+_______________________________________________________________________________________
+Hello Irina,
+Your order has been dispatched and delivered. The details are below.
+=======================================================================================
+Delivered	
+	Nov 4, 2018 07:35 PM
+Delivery Address
+	Na_ me_
+	X  #XX-XX
+	CONDO_NAME
+	Singapore,
+	POSTAL_CODE
+
+Delivered to
+    Household Member
+=======================================================================================	
+Order Details
+    Order #ORDER_6207
+    Placed on  November 4, 2018
+    Method 4X Concentrated Laundry Detergent Pack, Free + Clear, 1.58L and Ginger Mango Detergent, 240ml
+    S$24.95
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Pigeon Baby Wipes (Water Base), 30ct (Pack of 2)
+    S$3.30
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Green Apple, 4 Count
+    S$2.65
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Beautex 2 PLY Soft Pack Facial Tissue, 200ct (Pack of 4)
+    S$4.60
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Yoplait Yoplus Light Natural Yoghurt, 1kg
+    S$7.35
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Chew's Organic Selenium Fresh Brown Eggs, 550g
+    S$3.95
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Young Ginger, 300g
+    S$2.35
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Avocado, Australia (Pack of 3)
+    S$6.75
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Large Lime, 250g
+    S$2.80
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Gala Apple, 4 Count
+    S$2.60
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Lemon, 3 Count
+    S$1.73
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Broccoli, 300g
+    S$2.60
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Seawaves Cooked Prawns, 350g - Frozen
+    S$8.90
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Pumpkin Butternut, 1-1.5kg
+    S$5.78
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Ecomil Coconut Milk Nature Calcium Drink (Sugar Free), 1L
+    S$5.10
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Cirio Chick Peas (Ceci), 410g
+    S$1.90
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Cirio Canellini Beans, 410g
+    S$1.90
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    PurSoft Chocolate Rain Bathroom Rolls, 3 Ply - 220 Sheets x 10 Rolls
+    S$5.75
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+_______________________________________________________________________________________
+    Subtotal: S$94.96
+    Postage & Packing: Free
+    Order Total: S$94.96
+=======================================================================================
+
+By placing your order, you agree to Amazon.com.sg's Privacy Notice and Conditions of Use.Learn more at: https://www.amazon.com.sg/help/legalPolicies.  This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message. Amazon Asia-Pacific Holdings Private Limited (Co. Reg. No. 201411358G).
+------=_Part_19608041_1932147576.1541331377014
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns=3D"https://www.w3.org/1999/xhtml">
+ <head>=20
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" =
+/>=20
+  <style type=3D"text/css">
+body {
+=09margin:0;
+=09font:12px/16px Arial, sans-serif;=09
+}
+
+a {
+=09text-decoration:none;
+=09color:#006699;
+=09font:12px/16px Arial, sans-serif;=09
+}
+
+a img {
+=09border:0;
+}
+
+h2 {
+=09font-size:20px;
+=09line-height:24px;
+=09margin:0;
+=09padding:0;
+=09font-weight:normal;=09
+=09color:#000 !important;
+}
+
+h3 {
+=09font-size: 18px;
+=09color:#cc6600;
+=09margin:15px 0 0 0;
+=09font-weight: normal
+}
+
+h4 {
+=09font-size:14px;=09
+=09margin:0;
+=09font-weight:normal;
+}
+...
+..
+.

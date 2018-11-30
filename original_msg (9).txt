@@ -1,0 +1,223 @@
+Delivered-To: @
+Received: by 2002:ab0:5782:0:0:0:0:0 with SMTP id x2csp4182265uaa;
+        Mon, 29 Oct 2018 06:26:06 -0700 (PDT)
+X-Google-Smtp-Source: AJdET5fLAX2ecuRWXOFOyzSWmFdHWTcqbAL7TKpziBCROxqRTuQLzaCVH8GcF48KoYNEMuWbbNa1
+X-Received: by 2002:a17:902:4381:: with SMTP id j1-v6mr14064631pld.59.1540819566781;
+        Mon, 29 Oct 2018 06:26:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1540819566; cv=none;
+        d=google.com; s=arc-20160816;
+        b=RRtVSq1YnArjETYFFqVBG7YmSY35p2Bsr6WT0LY4+157TxgISdHM4t7Sy00etF1vMV
+         1tZE9YV2/F1YcPjBC6nxiOYFR+tfLH6TxOpnEcVAovQ3oNMrFr+z9H0YGPePW+txUZPf
+         zxV9Y6zz/1XDRnKTltEX2dvxtW8T866CEXROxT9MF2uomAMjZQQr/h3adMR7T4ICHfyj
+         hwA2PYUkY5Cyu8VKfKREU1vdWil8qQYuE1NHixTplljw0+T9OoLEoVL+Q7wnFVlYI04B
+         WAb3mA5cj91qPT20wv/+ANPjWMk1YKxsP6zT5gvYcWIWS7jm+TzV/AALtNg7OwBD20QS
+         VZsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=feedback-id:date:bounces-to:mime-version:subject:message-id:to:from
+         :dkim-signature:dkim-signature;
+        bh=gby1oT/4C8X3ev7jBMZEh0TjEpBOeRCxt6a4jqnOj2o=;
+        b=FXKMFDrax/5cTSLT7R/dtIsn9hh1JSTia75MfcOHrvlKealIYH/h+l+PQnH78I0fGk
+         opFL/4TLbzVUjLswq1777Pnuw16e18r6oPplnHulU/S5FM4M1E+Tq/oVviR8CmcS8y/c
+         gUXxlA4duDuN+x6FED9+zIVFW7F1lJKaI8IgnNpLQLdaK0fRuK5nNOJGpfwGGmYkERqW
+         1ZAsYD23vY9lqFhbk01hQwHWm0cFPRAtWTp5YGAa7harB68kcQIBK3q/F9wvDRHVjRP0
+         uoEQUgWSr/fdAdRubO+Y9qoPrbxnVxq5X5ieTvX4Q5I82IQE/PExu3/tJQM2PtkgL85+
+         1Ing==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@amazon.com.sg header.s=nswvcovbcsespzn6z6dnzr7wtptvvfvo header.b=XWlC87Dk;
+       dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=W5t2OSbE;
+       spf=pass (google.com: domain of 201810291326005d3d6a561afa4895b0c22c915670p0fe@bounces.amazon.com designates 54.240.25.15 as permitted sender) smtp.mailfrom=201810291326005d3d6a561afa4895b0c22c915670p0fe@bounces.amazon.com
+Return-Path: <201810291326005d3d6a561afa4895b0c22c915670p0fe@bounces.amazon.com>
+Received: from a25-15.smtp-out.us-west-2.amazonses.com (a25-15.smtp-out.us-west-2.amazonses.com. [54.240.25.15])
+        by mx.google.com with ESMTPS id i64-v6si6706817pli.135.2018.10.29.06.26.06
+        for <@>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 29 Oct 2018 06:26:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 201810291326005d3d6a561afa4895b0c22c915670p0fe@bounces.amazon.com designates 54.240.25.15 as permitted sender) client-ip=54.240.25.15;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@amazon.com.sg header.s=nswvcovbcsespzn6z6dnzr7wtptvvfvo header.b=XWlC87Dk;
+       dkim=pass header.i=@amazonses.com header.s=7v7vs6w47njt4pimodk5mmttbegzsi6n header.b=W5t2OSbE;
+       spf=pass (google.com: domain of 201810291326005d3d6a561afa4895b0c22c915670p0fe@bounces.amazon.com designates 54.240.25.15 as permitted sender) smtp.mailfrom=201810291326005d3d6a561afa4895b0c22c915670p0fe@bounces.amazon.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=nswvcovbcsespzn6z6dnzr7wtptvvfvo; d=amazon.com.sg; t=1540819566;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date;
+	bh=gtLe+OZkpETJf7xiBWhQ23LPud2WOOeO5RZZw46gytg=;
+	b=XWlC87Dk4s1QfHEFtYs72bVEtb38xC1h+3tbm/tn0lQPUKNmsaLu7gHXDDR8Rgnj
+	aYFe1myVib1Q9GAas/lqPAEN6rWko53y8pr83upTt1N6RtrAf75eSLq2ArDjpMO5N0f
+	tD7Z6fTgWaODNcduHgkKMgVP9AB05+PrkI+MeKkA=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=7v7vs6w47njt4pimodk5mmttbegzsi6n; d=amazonses.com; t=1540819566;
+	h=From:To:Message-ID:Subject:MIME-Version:Content-Type:Date:Feedback-ID;
+	bh=gtLe+OZkpETJf7xiBWhQ23LPud2WOOeO5RZZw46gytg=;
+	b=W5t2OSbEWhNVfBTW2pzIiQDWLZwwVyORMcLa4jw/wR++uUZ92ELHirmrxiqv3mfh
+	2+QvOXANLi6gAB4cG+CbeWNeRCv6epQ9M3jWM5539F/bDQ8BtdEvLeTqyT8omvyf2zn
+	kEiM1jJ4nbVsC+iOrOzKumieZFbRSYEhot40Z74w=
+From: Amazon Prime Now <primenow-reply@amazon.com.sg>
+To: @
+Message-ID: <01010166c000be67-26d7ceef-6d34-490f-930b-8543ef0aa60e-000000@us-west-2.amazonses.com>
+Subject: Your Amazon Prime Now order has been delivered.
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_12144791_127916115.1540819566162"
+X-AMAZON-MAIL-RELAY-TYPE: notification
+Bounces-to: 201810291326005d3d6a561afa4895b0c22c915670p0fe@bounces.amazon.com
+X-AMAZON-METADATA: CA=C3SCOG3EADVKTV-CU=A2CTYSYYKJUR98
+X-Original-MessageID: <urn.rtn.msg.201810291326005d3d6a561afa4895b0c22c915670p0fe@1540819566165.rtn-svc-fe-back-m4l2a-3ae6d3ba.us-west-2.amazon.com>
+Date: Mon, 29 Oct 2018 13:26:06 +0000
+X-SES-Outgoing: 2018.10.29-54.240.25.15
+Feedback-ID: 1.us-west-2.rdzROVNU4Ie6UEvJOunP6JDKqJ3if06FJy9qthmk+BU=:AmazonSES
+
+------=_Part_12144791_127916115.1540819566162
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Amazon Prime Now
+Order Dispatched and Delivered 
+Order #ORDER_7467
+_______________________________________________________________________________________
+Hello Irina,
+Your order has been dispatched and delivered. The details are below.
+=======================================================================================
+Delivered	
+	Oct 29, 2018 09:25 PM
+Delivery Address
+	Na_ me_
+	X  #XX-XX
+	CONDO_NAME
+	Singapore,
+	POSTAL_CODE
+
+Delivered to
+    Household Member
+=======================================================================================	
+Order Details
+    Order #ORDER_7467
+    Placed on  October 29, 2018
+    MamyPoko Air Fit Pants Girl, L, 44 Count
+    S$21.95
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Origins Organic Sunflower Seed, 250g
+    S$4.30
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Foodsterr Pumpkin Seeds, 250g
+    S$6.35
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Gardenia Enriched 50% Wholemeal White Bread, 400G
+    S$2.30
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    ZAC Butchery Fresh Minced Chicken, 250g (Halal)
+    S$4.25
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Banana, 4 Count
+    S$2.46
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Organic Lacto Chicken Boneless Breast, 300g
+    S$6.84
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+            
+    2 x Ayam Brand Trim Coconut Milk, 200ml
+    S$1.80
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Yellow Zucchini, 700g
+    S$4.10
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Sweet Pea, 200g
+    S$2.30
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Bio-colour Sweet Corn, (Pack of 2)
+    S$4.80
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Premium Pear, Green, 4 Count
+    S$4.00
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Japanese Cucumber, 250g
+    S$1.45
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Lemon, 3 Count
+    S$1.73
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+            
+    2 x Dairy Farmers Thick and Creamy, Pear & Cinnamon Yoghurt, 150g
+    S$5.06
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+            
+    2 x Dairy Farmers Yoghurt, Strawberry, 150 g
+    S$5.06
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+            
+    2 x Pura Fresh Milk, 1L
+    S$6.52
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Perfect Italiano Mozzarella Grated Cheese, 250g
+    S$5.95
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    KUHNE Sliced Beetroot, 1 x 330g
+    S$3.50
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Enoki Mushroom, Japan, 200g
+    S$2.89
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Pomelo, 1 Count
+    S$4.91
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    123 ORGANIC Carrot, 480g
+    S$4.99
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    Red Spinach, 220g
+    S$0.85
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+    123 ORGANIC Organic New Zealand Spinach, 250g
+    S$1.90
+    Sold by: Amazon Asia-Pacific Holdings Private Limited
+_______________________________________________________________________________________
+    Subtotal: S$110.26
+    Postage & Packing: Free
+    Promotion Applied: -S$10.00
+    Order Total: S$100.26
+=======================================================================================
+
+By placing your order, you agree to Amazon.com.sg's Privacy Notice and Conditions of Use.Learn more at: https://www.amazon.com.sg/help/legalPolicies.  This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message. Amazon Asia-Pacific Holdings Private Limited (Co. Reg. No. 201411358G).
+------=_Part_12144791_127916115.1540819566162
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns=3D"https://www.w3.org/1999/xhtml">
+ <head>=20
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" =
+/>=20
+  <style type=3D"text/css">
+body {
+=09margin:0;
+=09font:12px/16px Arial, sans-serif;=09
+}
+
+a {
+=09text-decoration:none;
+=09color:#006699;
+=09font:12px/16px Arial, sans-serif;=09
+}
+
+a img {
+=09border:0;
+}
+
+h2 {
+=09font-size:20px;
+=09line-height:24px;
+=09margin:0;
+=09padding:0;
+=09font-weight:normal;=09
+=09color:#000 !important;
+}
+
+h3 {
+=09font-size: 18px;
+=09color:#cc6600;
+=09margin:15px 0 0 0;
+=09font-weight: normal
+}
+
+h4 {
+=09font-size:14px;=09
+=09margin:0;
+=09font-weight:normal;
+}
